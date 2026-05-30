@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Himanshu · Links</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #13131a;
+    --border: #222230;
+    --accent: #f564a9;
+    --accent2: #a855f7;
+    --accent3: #38bdf8;
+    --text: #f0f0f8;
+    --muted: #6b6b88;
+    --radius: 20px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 16px 60px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Blobs */
+  .blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .blob1 { width: 350px; height: 350px; background: var(--accent2); top: -100px; right: -80px; }
+  .blob2 { width: 280px; height: 280px; background: var(--accent); bottom: 80px; left: -60px; }
+  .blob3 { width: 200px; height: 200px; background: var(--accent3); top: 40%; left: 50%; transform: translate(-50%,-50%); }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 460px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 64px;
+  }
+
+  /* Avatar */
+  .avatar {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent2), var(--accent), var(--accent3));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 2.4rem;
+    color: #fff;
+    margin-bottom: 18px;
+    box-shadow: 0 0 0 3px #ffffff18, 0 0 40px #a855f740;
+    animation: popIn .5s cubic-bezier(.175,.885,.32,1.275) both;
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(.7); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  /* Name */
+  .name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.8rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    animation: fadeUp .45s .1s ease both;
+  }
+  .name span {
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Bio */
+  .bio {
+    font-size: .9rem;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    animation: fadeUp .45s .18s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Links */
+  .links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .link-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 20px;
+    height: 64px;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text);
+    position: relative;
+    overflow: hidden;
+    transition: transform .2s, border-color .2s, box-shadow .2s;
+    animation: fadeUp .4s ease both;
+  }
+  .link-card:nth-child(1) { animation-delay: .25s; }
+  .link-card:nth-child(2) { animation-delay: .32s; }
+  .link-card:nth-child(3) { animation-delay: .39s; }
+  .link-card:nth-child(4) { animation-delay: .46s; }
+
+  .link-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    opacity: 0;
+    transition: opacity .25s;
+  }
+  /* Per-card accent colors */
+  .link-card.insta::before  { background: linear-gradient(120deg, #f5648520, #a855f718); }
+  .link-card.pinterest::before { background: linear-gradient(120deg, #e6000020, transparent); }
+  .link-card.spotify::before { background: linear-gradient(120deg, #1db95420, transparent); }
+  .link-card.snap::before   { background: linear-gradient(120deg, #fffc0020, transparent); }
+
+  .link-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px #00000055; }
+  .link-card.insta:hover  { border-color: #f56484; }
+  .link-card.pinterest:hover { border-color: #e60023; }
+  .link-card.spotify:hover { border-color: #1db954; }
+  .link-card.snap:hover   { border-color: #fffc00; }
+  .link-card:hover::before { opacity: 1; }
+  .link-card:active { transform: translateY(0); }
+
+  .link-icon {
+    width: 38px; height: 38px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .insta   .link-icon { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+  .pinterest .link-icon { background: #e60023; }
+  .spotify .link-icon { background: #1db954; }
+  .snap    .link-icon { background: #fffc00; }
+
+  .link-info { flex: 1; }
+  .link-name {
+    font-weight: 600;
+    font-size: .97rem;
+  }
+  .link-handle {
+    font-size: .78rem;
+    color: var(--muted);
+    margin-top: 1px;
+  }
+  .link-arrow {
+    color: var(--muted);
+    font-size: .85rem;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 48px;
+    font-size: .75rem;
+    color: var(--muted);
+    text-align: center;
+    animation: fadeUp .4s .6s ease both;
+  }
+  .footer strong {
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+</style>
+</head>
+<body>
+
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+<div class="blob blob3"></div>
+
+<div class="container">
+
+  <div class="avatar">H</div>
+
+  <div class="name"><span>Himanshu</span></div>
+  <div class="bio">CSE Student 💻</div>
+
+  <div class="links">
+
+    <!-- Instagram -->
+    <a class="link-card insta" href="https://www.instagram.com/_himanshu_202__?igsh=MXV1bTJpazhwb2o1bg==" target="_blank" rel="noopener">
+      <div class="link-icon">📸</div>
+      <div class="link-info">
+        <div class="link-name">Instagram</div>
+        <div class="link-handle">@_himanshu_202__</div>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+
+    <!-- Pinterest -->
+    <a class="link-card pinterest" href="https://pin.it/7wZmL2YNZ" target="_blank" rel="noopener">
+      <div class="link-icon">📌</div>
+      <div class="link-info">
+        <div class="link-name">Pinterest</div>
+        <div class="link-handle">My Pins</div>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+
+    <!-- Spotify -->
+    <a class="link-card spotify" href="https://open.spotify.com/user/315qawwtj5xakem6f7isqxsx6bbe?si=ztfylU0xQQ2XxWuaavnbrQ" target="_blank" rel="noopener">
+      <div class="link-icon">🎵</div>
+      <div class="link-info">
+        <div class="link-name">Spotify</div>
+        <div class="link-handle">My Music</div>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+
+    <!-- Snapchat -->
+    <a class="link-card snap" href="https://www.snapchat.com/add/himanshu2_02?share_id=PbRTv6hZZGQ&locale=en-IN" target="_blank" rel="noopener">
+      <div class="link-icon">👻</div>
+      <div class="link-info">
+        <div class="link-name">Snapchat</div>
+        <div class="link-handle">himanshu2_02</div>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+
+  </div>
+
+  <div class="footer">Made with <strong>MyLinks</strong> · Free forever ✨</div>
+
+</div>
+</body>
+</html>
